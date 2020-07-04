@@ -19,4 +19,21 @@
 ## Code samples
 ## About models
 - Either YCbCr or DCT Coeff can be used as inputs to the neural net
+## Insights from leaders
+- Don't resize. Any perturbation to original pixels will obliterate all hidden message (which is already a very weak signal). So don't resize, rotate or re-save images during training
+- Augmentation with flips and 90-degree rotations are OK.
+- Crops are useless. In a sense, training on full-sized 512x512 tends to provide higher AUC score on all model architectures I've tried so far
+- Training on YCbCr colorspace is doubtful IMO. At the end of the day, YCbCr RGB conversion is a linear combination and any CNN model will learn it with ease
+- Normalization is very important. Don't forget to do proper (at least ImageNet-like) normalization for your input data
+- Bronze with Resnet34 is doable. It's faster to train than heavier models, but shows immediately if there is something wrong with your pipeline.
+- The way you read JPEGs is irrelevant. As long as you read images the same way for training & testing you're good.
+- TTA helps, but up to some point. After 0.92 it worsens the score.
+- You can solve this problem as binary- and multi-class classification. Multi-class seems to be a bit better, but it's not written in stone.
+- Bigger batch is better. I'm strongly suggesting to leverage fp16 training or if you know how to do model surgery - give a try to InplaceABN.
 ## About submission
+## Important links
+- FP16 : https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning
+- Tips Discussion : https://www.kaggle.com/c/alaska2-image-steganalysis/discussion/155392
+- Model Surgery : https://www.kaggle.com/neongen/minimum-vram-footprint-gpu-baseline
+- Discussion on model Surgery : https://www.kaggle.com/c/aptos2019-blindness-detection/discussion/104686
+- Basics of AUC-ROC : https://www.dataschool.io/roc-curves-and-auc-explained/
