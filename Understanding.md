@@ -19,6 +19,7 @@
 ## Code samples
 ## About models
 - Either YCbCr or DCT Coeff can be used as inputs to the neural net
+- This problem can be solved as a binary classification problem. But solving as a [multiclas problem](https://www.kaggle.com/c/alaska2-image-steganalysis/discussion/155821) seems to be better
 ## Insights from leaders
 - Don't resize. Any perturbation to original pixels will obliterate all hidden message (which is already a very weak signal). So don't resize, rotate or re-save images during training
 - Augmentation with flips and 90-degree rotations are OK.
@@ -37,3 +38,8 @@
 - Model Surgery : https://www.kaggle.com/neongen/minimum-vram-footprint-gpu-baseline
 - Discussion on model Surgery : https://www.kaggle.com/c/aptos2019-blindness-detection/discussion/104686
 - Basics of AUC-ROC : https://www.dataschool.io/roc-curves-and-auc-explained/
+
+## Experiments
+|Version|Changes in models|Changes in Augmentation|training score |validation score|public leader board score|
+|-------|-----------------|-----------------------|---------------|----------------|-------------------------|
+|v1|replaced efficientnet with resnet34|Added 90 degree rotation|0|0|0|
