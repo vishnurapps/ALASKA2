@@ -40,7 +40,7 @@
 - Basics of AUC-ROC : https://www.dataschool.io/roc-curves-and-auc-explained/
 
 ## Experiments
-|Version|Changes in models|Changes in Augmentation|Validation loss |validation auc score|public leader board score|
+|Version|Changes in models|Changes in Augmentation|batch size|Validation loss |validation auc score|public leader board score|
 |-------|-----------------|-----------------------|---------------|----------------|-------------------------|
-|v1(base forked)|Used efficientnet|horizontal flip, vertical flip|58.146|0.799|NA|
-|v2(My first attempt)|replaced efficientnet with resnet34|Added 90 degree rotation|0.108|0.788|0.601|
+|v1(base forked)|Used efficientnet|horizontal flip, vertical flip|32|58.146|0.799|NA|
+|v2(My first attempt)|replaced efficientnet with resnet34|Added 90 degree rotation|32|0.108|0.788|0.601|
