@@ -31,6 +31,17 @@
 - TTA helps, but up to some point. After 0.92 it worsens the score.
 - You can solve this problem as binary- and multi-class classification. Multi-class seems to be a bit better, but it's not written in stone.
 - Bigger batch is better. I'm strongly suggesting to leverage fp16 training or if you know how to do model surgery - give a try to InplaceABN.
+
+##Advantages of tfrecords
+
+Reading each individual image in the large dataset is often a slow process. So, to make it fast we store many images as tensor Tf records and read from there.
+At a time, we can feed data from many TF records to TPU for training without worrying about the order. This will make the data feeding process fast and hence improve the overall run time.
+
+## Models to try
+MobileNet, MixNet, and EfficientNet - Depthwise separable convolutions are common between these backbones.
+
+Expanding on this idea… FBNet, MNASNet, SinglePath NAS also converge, but don't achieve as high an accuracy as the bigger Efficientnets (they tend to level off in the Efficientnet B0-B1 range). So I'd say more generally that backbones based on the MobileNet V1/V2 block sequence tend to work. More work to do on understanding why this is the case.
+This observation can also form the basis for custom network design.
 ## About submission
 ## Important links
 - FP16 : https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning
